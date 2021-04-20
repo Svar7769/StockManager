@@ -19,13 +19,11 @@ public class stockManeger {
 
         // Some printf statement
         System.out.println("WELCOME TO iSTOCKS :");
-        // User input for loading methods
-        System.out.println("Enter no 1 to 5 to view respective feature");
-        int a= sc.nextInt();
 
-        while (true) {
+        // User input for loading methods
+        while (control) {
             System.out.println("Enter Ypur Pick \n");
-            a= sc.nextInt();
+            int a= sc.nextInt();
             if (a > 0 && a <= 5) {
                 switch (a) {
                     // Add Item
@@ -40,16 +38,32 @@ public class stockManeger {
                         float price = sc.nextFloat();
 
                         // Adding Item to the inventory
-                        StockManager.addItem items1 = new addItem(name, qty, price);
+                        StockManager.addItem item = new addItem(name, qty, price);
                         System.out.println("Updated Inventory " + inv);
                         break;
+
                     // Update Item
-
                     case 2:
-                        control = false;
-                        break;
-                    // Display Inventory
+                        // Inv before update
+                        System.out.println("Inventory " + inv);
 
+                        System.out.println("Enter item to be updated\n");
+                        name = sc.next();
+                        // checking for the name in the Inventory
+                        if(inv.containsKey(name)){
+                            System.out.println("Enter qty Sold\n");
+                            qty = sc.nextInt();
+
+                            // Calling update method
+                            StockManager.updateInventory updateItem = new updateInventory(name, qty);
+                            System.out.println("Updated Inventory " + inv);
+                            break;
+                        } else {
+                            System.out.println("Enter the Item that you have\n");
+                            break;
+                        }
+
+                    // Display Inventory
                     case 3:
                         break;
 
