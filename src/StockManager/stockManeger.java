@@ -9,6 +9,10 @@ public class stockManeger {
 
     public static void main( String[] args ) {
 
+        // Class Variable declaration
+        StockManager.Display display = new Display();
+        StockManager.updateInventory updateItem = new updateInventory();
+
         // Scanner variable
         Scanner sc = new Scanner(System.in);
 
@@ -22,10 +26,15 @@ public class stockManeger {
 
         // User input for loading methods
         while (control) {
-            System.out.println("Enter Ypur Pick \n");
+            System.out.println("Enter Your Pick \n");
             int a= sc.nextInt();
-            if (a > 0 && a <= 5) {
+            if (a >= 0 && a <= 5) {
                 switch (a) {
+                    // Close Loop
+                    case 0 :
+                        System.out.println("Thank you for  Using US");
+                        control = false;
+
                     // Add Item
                     case 1:
                         // Data Entry
@@ -55,7 +64,9 @@ public class stockManeger {
                             qty = sc.nextInt();
 
                             // Calling update method
-                            StockManager.updateInventory updateItem = new updateInventory(name, qty);
+                            updateItem.updateItem(name, qty);
+
+                            // Showing updated Inventory
                             System.out.println("Updated Inventory " + inv);
                             break;
                         } else {
@@ -65,16 +76,28 @@ public class stockManeger {
 
                     // Display Inventory
                     case 3:
+                        display.showInventory();
                         break;
 
-                    // Delete Item
+                    // Search Item
                     case 4:
+                        System.out.println("Enter name of item you want to search:\n");
+                        // Taking user Input
+                        name = sc.next();
+                        display.serchInventory(name);
                         break;
 
-                    // Closing the program by braking while loop
+                    // Delete Inventory
                     case 5:
-                        System.out.println("Thank you for  Using US");
-                        control = false;
+                        System.out.println("Enter name of item you want to delete:\n");
+                        // Taking user Input
+                        name = sc.next();
+
+                        // Calling delete Method
+                        updateItem.deleteItem(name);
+
+                        // Show Inventory
+                        display.showInventory();
                         break;
                     default:
                         System.out.println("INVALID INPUT");

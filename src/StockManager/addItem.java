@@ -12,10 +12,10 @@ public class addItem {
         this.qty = qty;
         this.price = price;
 
-        addToItem();
+        addToInventory();
     }
 
-    void addToItem() {
+    void addToInventory() {
 
         // Making an value
         Hashtable<String, String> itemInfo = new Hashtable<>();
@@ -23,7 +23,6 @@ public class addItem {
         // Placing Value in hashTable
         itemInfo.put("PRICE", String.valueOf(this.price));
         itemInfo.put("QUANTITY", String.valueOf(this.qty));
-        itemInfo.put("NAME", String.valueOf(name));
 
 
         // adding it to the Inv

@@ -1,15 +1,28 @@
 This is a Simple Stock Management System
 
 Feature:
+
 Display Stock Inventory
 Add Stocks
 Delete Stocks
+Update Stocks
+    Buy Item
+    Sell Items
+
+
+    Can be added Feature
+        Statistical Analysis
+            -> Total Inventory value
+            -> Total Items in an inventory
+        More Updateable Stocks
+            -> Update Name
+            -> Update Quantity
+            -> Update Price
 
 Search Item
 
 DataTypes
 Items:
-   Name: String
    Quantity: int
    Price: Float
 
