@@ -1,0 +1,19 @@
+This is a Simple Stock Management System
+
+Feature:
+Display Stock Inventory
+Add Stocks
+Delete Stocks
+
+Search Item
+
+DataTypes
+Items:
+   Name: String
+   Quantity: int
+   Price: Float
+
+User Inputs Data in a Map
+    that creates a list for that Product which include [Name, Quantity, Price]
+    then this list is added to an key value dataStructure called Map(Like dictionaries)
+    with key as 'NAME' and value as 'LIST'
