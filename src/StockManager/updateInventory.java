@@ -16,7 +16,10 @@ public class updateInventory {
         // Condition Checking
         if (newQty<0){
             System.out.println("You don't have that much item in your inventory");
-        } else {
+        }else if (newQty == 0) {
+            deleteItem(name);
+        }
+        else {
             // Changing Qty in Inv
             stockManeger.inv.get(name).replace("QUANTITY", String.valueOf(newQty));
         }
@@ -29,6 +32,52 @@ public class updateInventory {
         } else {
             // If the Does not Exist
             System.out.println("Your Inventory does not contain such Item\n");
+        }
+    }
+
+    void buyExistingItem(String name, int qty, float price) {
+        int preQty =Integer.parseInt(stockManeger.inv.get(name).get("QUANTITY"));
+        int newQty = qty+preQty;
+
+        // changing quantity
+        stockManeger.inv.get(name).replace("QUANTITY", String.valueOf(newQty));
+
+        // Checking if price Change
+        // This Variable can be used to track change in price if wanted
+        int prePrice =Integer.parseInt(stockManeger.inv.get(name).get("QUANTITY"));
+        // Updating Data if there is a change in price
+        if (prePrice != price) {
+            stockManeger.inv.get(name).replace("PRICE", String.valueOf(price));
+        }
+    }
+
+    void buyNewItem(String name, int qty, float price) {
+        // Simply creating a new Item
+        StockManager.addItem item = new addItem();
+        item.addToInventory(name, qty, price);
+    }
+
+    void sellItem(String name, int qty, float price) {
+        int preQty =Integer.parseInt(stockManeger.inv.get(name).get("QUANTITY"));
+        int curQty = preQty - qty;
+        // Condition Checking
+        if (curQty<0){
+            System.out.println("You don't have that much item in your inventory");
+        }else if (curQty <= 0) {
+            // delete  item if we are out of stock
+            deleteItem(name);
+        }
+        else {
+            // Changing Qty in Inv
+            stockManeger.inv.get(name).replace("QUANTITY", String.valueOf(curQty));
+        }
+
+        // Checking if price Change
+        // This Variable can be used to track change in price if wanted
+        int prePrice =Integer.parseInt(stockManeger.inv.get(name).get("QUANTITY"));
+        // Updating Data if there is a change in price
+        if (prePrice != price) {
+            stockManeger.inv.get(name).replace("PRICE", String.valueOf(price));
         }
     }
 }

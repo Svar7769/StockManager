@@ -12,6 +12,13 @@ public class stockManeger {
         // Class Variable declaration
         StockManager.Display display = new Display();
         StockManager.updateInventory updateItem = new updateInventory();
+        StockManager.addItem item = new addItem();
+        StockManager.search search = new search();
+
+        // Variable Declaration
+        String name;
+        int qty;
+        float price;
 
         // Scanner variable
         Scanner sc = new Scanner(System.in);
@@ -26,7 +33,13 @@ public class stockManeger {
 
         // User input for loading methods
         while (control) {
-            System.out.println("Enter Your Pick \n");
+            System.out.println("Enter Your Pick");
+            System.out.println("Enter 1 :   Display Inventory\n" +
+                    "Enter 2 :  Buy Item\n" +
+                    "Enter 3 :  Sell Item\n" +
+                    "Enter 4 :  Search Item\n" +
+                    "Enter 5 :  Delete Item\n" +
+                    "Enter 0:   Exit\n");
             int a= sc.nextInt();
             if (a >= 0 && a <= 5) {
                 switch (a) {
@@ -34,49 +47,50 @@ public class stockManeger {
                     case 0 :
                         System.out.println("Thank you for  Using US");
                         control = false;
-
-                    // Add Item
-                    case 1:
-                        // Data Entry
-                        System.out.println("PLEASE ENTER YOUR ITEM DATA  \n");
-                        System.out.println("ENTER YOUR NAME:\n");
-                        String name = sc.next();
-                        System.out.println("ENTER QTY \n");
-                        int qty = sc.nextInt();
-                        System.out.println("ENTER PRICE \n");
-                        float price = sc.nextFloat();
-
-                        // Adding Item to the inventory
-                        StockManager.addItem item = new addItem(name, qty, price);
-                        System.out.println("Updated Inventory " + inv);
                         break;
 
-                    // Update Item
+                    // Display Inventory
+                    case 1:
+                        display.showInventory();
+                        break;
+
+                    // Buy Item
                     case 2:
-                        // Inv before update
-                        System.out.println("Inventory " + inv);
-
-                        System.out.println("Enter item to be updated\n");
+                        // Take item Info
+                        System.out.println("PLEASE ENTER YOUR ITEM DATA  \n");
+                        System.out.println("ENTER YOUR NAME:\n");
                         name = sc.next();
-                        // checking for the name in the Inventory
-                        if(inv.containsKey(name)){
-                            System.out.println("Enter qty Sold\n");
-                            qty = sc.nextInt();
+                        System.out.println("ENTER QTY \n");
+                        qty = sc.nextInt();
+                        System.out.println("ENTER PRICE \n");
+                        price = sc.nextFloat();
 
-                            // Calling update method
-                            updateItem.updateItem(name, qty);
-
-                            // Showing updated Inventory
-                            System.out.println("Updated Inventory " + inv);
-                            break;
+                        // check if item exists in your inventory
+                        if (stockManeger.inv.containsKey(name)){
+                            updateItem.buyExistingItem(name, qty, price);
                         } else {
-                            System.out.println("Enter the Item that you have\n");
-                            break;
+                            updateItem.buyNewItem(name, qty, price);
+                        }
+                        break;
+
+                    // Sold Item
+                    case 3:
+                        // Take Item Info
+                        System.out.println("PLEASE ENTER YOUR ITEM DATA  \n");
+                        System.out.println("ENTER YOUR NAME:\n");
+                        name = sc.next();
+                        System.out.println("ENTER QTY \n");
+                        qty = sc.nextInt();
+                        System.out.println("ENTER PRICE \n");
+                        price = sc.nextFloat();
+
+                        // check if item exists in your Inventory
+                        if (stockManeger.inv.containsKey(name)) {
+                            updateItem.sellItem(name, qty, price);
+                        } else {
+                            System.out.println("You dont have item that you sold\n");
                         }
 
-                    // Display Inventory
-                    case 3:
-                        display.showInventory();
                         break;
 
                     // Search Item
@@ -84,7 +98,7 @@ public class stockManeger {
                         System.out.println("Enter name of item you want to search:\n");
                         // Taking user Input
                         name = sc.next();
-                        display.serchInventory(name);
+                        search.searchInventory(name);
                         break;
 
                     // Delete Inventory
