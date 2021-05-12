@@ -15,17 +15,16 @@ public class storeJson {
 
     // Updates and store HashTable to Json File while closing the App
     public static void storeToJson(){
+        // Converting HashTable to JSON
         String jsonText = JSONValue.toJSONString(stockManeger.inv);
-        System.out.println(jsonText);
 
+        // Writing JsonText to JSON FIle
         try(FileWriter file = new FileWriter("C:\\Users\\svarp\\IdeaProjects\\StockManager\\src\\StockManager\\DATA.json")) {
             file.write(jsonText);
             file.flush();
         }catch(IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println(stockManeger.inv);
     }
 
 
