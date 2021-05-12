@@ -1,32 +1,32 @@
-This is a Simple Stock Management System
+This is a Stock Management System that can take care of your basic Inventory Management Needs.
 
 Feature:
 
 Display Stock Inventory
-Add Stocks
-Delete Stocks
-Update Stocks
-    Buy Item
-    Sell Items
+Buy Stock
+Sell Stock
+Delete Stock
+Search Stocks from Your inventory
 
-
-    Can be added Feature
+Currently Working On:
+    Feature that are to be added
+        File Storage
+            -> So Data can be reused after every session
+        Multiple Users
         Statistical Analysis
             -> Total Inventory value
+            -> Total Sales
             -> Total Items in an inventory
-        More Updateable Stocks
+            -> Change in Item Price Over time
+        More Changable Stock Stocks
             -> Update Name
             -> Update Quantity
             -> Update Price
+        Multiple Devices Support
 
-Search Item
 
 DataTypes
+Hash Table
 Items:
-   Quantity: int
-   Price: Float
-
-User Inputs Data in a Map
-    that creates a list for that Product which include [Name, Quantity, Price]
-    then this list is added to an key value dataStructure called Map(Like dictionaries)
-    with key as 'NAME' and value as 'LIST'
+    Quantity: int
+    Price: Float

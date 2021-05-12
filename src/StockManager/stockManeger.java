@@ -6,8 +6,12 @@ public class stockManeger {
 
     // Inventory variable that can be accesed by all class
     protected static Hashtable<String, Hashtable<String, String>> inv = new Hashtable<>();
+    protected static String DIR_PATH = "C:\\Users\\svarp\\IdeaProjects\\StockManager\\src\\StockManager\\DATA.json";
 
     public static void main( String[] args ) {
+
+        // Loading Data From Hash Table
+        storeJson.loadDATA();
 
         // Class Variable declaration
         StockManager.Display display = new Display();
@@ -47,6 +51,7 @@ public class stockManeger {
                     case 0 :
                         System.out.println("Thank you for  Using US");
                         control = false;
+                        storeJson.storeToJson();
                         break;
 
                     // Display Inventory
@@ -69,6 +74,9 @@ public class stockManeger {
                         if (stockManeger.inv.containsKey(name)){
                             updateItem.buyExistingItem(name, qty, price);
                         } else {
+                            updateItem.buyNewItem("svar", 12, 12);
+                            updateItem.buyNewItem("SVAR", 12, 12);
+                            updateItem.buyNewItem("SVar", 12, 12);
                             updateItem.buyNewItem(name, qty, price);
                         }
                         break;
